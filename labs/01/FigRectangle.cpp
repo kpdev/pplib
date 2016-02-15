@@ -1,14 +1,20 @@
 // FigRectangle.cpp - Реализация функций, осуществляющих обработку прямоугольника
 
 #include "FigRectangle.h"
+#include "../../pplib/CreateRegMarkMethod.h"
+#include "../../pplib/RegisterSpecialization.h"
+#include "../../pplib/RegisterMethod.h"
+
+CREATE_REG_MARK_METHOD(FigRectangle);
+REGISTER_SPECIALIZATION(FigRectangle, GetSpecNumAndIncrement, nullptr);
 
 //------------------------------------------------------------------------------
 //  Функции используемые для обработки прямоугольника как специализации фигуры
 
 // Инициализация существующей фигуры-прямоугольника
 void Init(FigRectangle& fr, int x, int y) {
-    fr.mark = rectangleMark;
-    Rectangle& r = fr.r;
+    fr.mark = GetRegMarkFigRectangle();
+    Rectangle& r = fr._spec;
     Init(r, x, y);
 }
 
@@ -41,13 +47,13 @@ Figure* CreateFigRectangleUseFileMark(int fileMark) {
 
 // Ввод специализации фигуры-прямоугольника из потока
 void In(ifstream &ifst, FigRectangle& fr) {
-    Rectangle& r = fr.r;
+    Rectangle& r = fr._spec;
     In(ifst, r);
 }
 
 // Вывод специализации фигуры-прямоугольника в поток
 void Out(ofstream &ofst, FigRectangle& fr) {
-    ofst << "Rectangle is as Specialization of Figure: x = " << fr.r.x << ", y = " << fr.r.y << endl;
+    ofst << "Rectangle is as Specialization of Figure: x = " << fr._spec.x << ", y = " << fr._spec.y << endl;
 }
 
 // Функции - оболочки, используемые для параметризации данной специализации
@@ -56,7 +62,7 @@ void Out(ofstream &ofst, FigRectangle& fr) {
 // Ввод специализации фигуры-прямоугольника из потока как фигуры
 void InFigRectangleValue(ifstream &ifst, Figure& f) {
     // Проверка на всякий случай
-    if(f.mark == rectangleMark) {
+    if(f.mark == GetRegMarkFigRectangle()) {
         In(ifst, static_cast<FigRectangle&>(f));
     }
     else {
@@ -68,7 +74,7 @@ void InFigRectangleValue(ifstream &ifst, Figure& f) {
 // Вывод специализации фигуры-прямоугольника в поток как фигуры
 void OutFigRectangle(ofstream &ofst, Figure& f) {
     // Проверка на всякий случай
-    if(f.mark == rectangleMark) {
+    if(f.mark == GetRegMarkFigRectangle()) {
         Out(ofst, static_cast<FigRectangle&>(f));
     }
     else {
@@ -77,6 +83,16 @@ void OutFigRectangle(ofstream &ofst, Figure& f) {
     }
 }
 
+// Организация регистрации функций, обеспечивающих процедурно-параметрический полиморфизм
+REGISTER_METHOD(createFigureUseFileMark, CreateFigRectangleUseFileMark, GetRegMarkFigRectangle(), nullptr);
+
+REGISTER_METHOD(inFigureValue, InFigRectangleValue, GetRegMarkFigRectangle(), nullptr);
+
+REGISTER_METHOD(outFigure, OutFigRectangle, GetRegMarkFigRectangle(), nullptr);
+
+
+
+/*
 // Организация регистрации функций, обеспечивающих процедурно-параметрический полиморфизм
 namespace {
     // Класс, обеспечивающий формирование нужных связей в своем конструкторе.
@@ -89,20 +105,23 @@ namespace {
         cout << regInfo << endl;
         figuresCounter++;
         cout << "FigRectangle was registered using number " << figuresCounter << endl;
+
         // Регистрация функции создания фигуры по маркеру файла
-        createFigureUseFileMark[rectangleMark] = CreateFigRectangleUseFileMark;
-        cout << "    createFigureUseFileMark[" << rectangleMark << "] = CreateFigRectangleUseFileMark" << endl;
-        // Регистрация функции ввода значений прямоугольника-специализации
-        inFigureValue[rectangleMark] = InFigRectangleValue;
+        createFigureUseFileMark[GetRegMarkFigRectangle()] = CreateFigRectangleUseFileMark;
+        cout << "    createFigureUseFileMark[" << GetRegMarkFigRectangle() << "] = CreateFigRectangleUseFileMark" << endl;
+        
+	// Регистрация функции ввода значений прямоугольника-специализации
+        inFigureValue[GetRegMarkFigRectangle()] = InFigRectangleValue;
         //inFigureValueCounter++;
-        cout << "    inFigureValue[" << rectangleMark << "] = InFigRectangleValue" << endl;
+        cout << "    inFigureValue[" << GetRegMarkFigRectangle() << "] = InFigRectangleValue" << endl;
+
         // Регистрация функции вывода параметров прямоугольника-специализации
-        outFigure[rectangleMark] = OutFigRectangle;
+        outFigure[GetRegMarkFigRectangle()] = OutFigRectangle;
         // outFigureCounter++;
-        cout << "    outFigure[" << rectangleMark << "] = OutFigRectangle" << endl;
+        cout << "    outFigure[" << GetRegMarkFigRectangle() << "] = OutFigRectangle" << endl;
     }
 
 
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     Register rectanRegister("Registration of: CreateFigRectangleUseFileMark, InFigRectangleValue, OutFigRectangle");
-}
+}*/

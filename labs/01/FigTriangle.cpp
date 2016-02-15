@@ -1,14 +1,22 @@
 // FigTriangle.cpp - Реализация функций, осуществляющих обработку треугольника
 
 #include "FigTriangle.h"
+#include "../../pplib/CreateRegMarkMethod.h"
+#include "../../pplib/RegisterSpecialization.h"
+#include "../../pplib/RegisterMethod.h"
+
+
+CREATE_REG_MARK_METHOD(FigTriangle);
+REGISTER_SPECIALIZATION(FigTriangle, GetSpecNumAndIncrement, nullptr);
 
 //------------------------------------------------------------------------------
 //  Функции используемые для обработки треугольника как специализации фигуры
 
+
 // Инициализация существующей фигуры-треугольника
 void Init(FigTriangle& ft, int a, int b, int c) {
-    ft.mark = triangleMark;
-    Triangle& t = ft.t;
+    ft.mark = GetRegMarkFigTriangle();
+    Triangle& t = ft._spec;
     Init(t, a, b, c);
 }
 
@@ -41,14 +49,14 @@ Figure* CreateFigTriangleUseFileMark(int fileMark) {
 
 // Ввод специализации фигуры-треугольника из потока
 void In(ifstream &ifst, FigTriangle& ft) {
-    Triangle& t = ft.t;
+    Triangle& t = ft._spec;
     In(ifst, t);
 }
 
 // Вывод специализации фигуры-треугольника в поток
 void Out(ofstream &ofst, FigTriangle& ft) {
-    ofst << "Triangle is as Specialization of Figure: a = " << ft.t.a 
-         << ", b = " << ft.t.b << ", c = " << ft.t.c << endl;
+    ofst << "Triangle is as Specialization of Figure: a = " << ft._spec.a 
+         << ", b = " << ft._spec.b << ", c = " << ft._spec.c << endl;
 }
 
 // Функции - оболочки, используемые для параметризации данной специализации
@@ -57,7 +65,7 @@ void Out(ofstream &ofst, FigTriangle& ft) {
 // Ввод специализации фигуры-треугольника из потока как фигуры
 void InFigTriangleValue(ifstream &ifst, Figure& f) {
     // Проверка на всякий случай
-    if(f.mark == triangleMark) {
+    if(f.mark == GetRegMarkFigTriangle()) {
         In(ifst, static_cast<FigTriangle&>(f));
     }
     else {
@@ -69,7 +77,7 @@ void InFigTriangleValue(ifstream &ifst, Figure& f) {
 // Вывод специализации фигуры-треугольника в поток как фигуры
 void OutFigTriangle(ofstream &ofst, Figure& f) {
     // Проверка на всякий случай
-    if(f.mark == triangleMark) {
+    if(f.mark == GetRegMarkFigTriangle()) {
         Out(ofst, static_cast<FigTriangle&>(f));
     }
     else {
@@ -78,6 +86,19 @@ void OutFigTriangle(ofstream &ofst, Figure& f) {
     }
 }
 
+
+
+
+// Организация регистрации функций, обеспечивающих процедурно-параметрический полиморфизм
+
+REGISTER_METHOD(createFigureUseFileMark, CreateFigTriangleUseFileMark, GetRegMarkFigTriangle(), nullptr);
+
+REGISTER_METHOD(inFigureValue, InFigTriangleValue, GetRegMarkFigTriangle(), nullptr);
+
+REGISTER_METHOD(outFigure, OutFigTriangle, GetRegMarkFigTriangle(), nullptr);
+
+
+/*
 // Организация регистрации функций, обеспечивающих процедурно-параметрический полиморфизм
 namespace {
     // Класс, обеспечивающий формирование нужных связей в своем конструкторе.
@@ -90,13 +111,16 @@ namespace {
         cout << regInfo << endl;
         figuresCounter++;
         cout << "FigTriangle was registered using number " << figuresCounter << endl;
+
         // Регистрация функции создания фигуры по маркеру файла
         createFigureUseFileMark[triangleMark] = CreateFigTriangleUseFileMark;
         cout << "    createFigureUseFileMark[" << triangleMark << "] = CreateFigTriangleUseFileMark" << endl;
-        // Регистрация функции ввода значений треугольника-специализации
+        
+	// Регистрация функции ввода значений треугольника-специализации
         inFigureValue[triangleMark] = InFigTriangleValue;
         //inFigureValueCounter++;
         cout << "    inFigureValue[" << triangleMark << "] = InFigTriangleValue" << endl;
+
         // Регистрация функции вывода параметров треугольника-специализации
         outFigure[triangleMark] = OutFigTriangle;
         //outFigureCounter++;
@@ -105,4 +129,4 @@ namespace {
 
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     Register trianRegister("Registration of: CreateFigTriangleUseFileMark, InFigTriangleValue, OutFigTriangle");
-}
+}*/

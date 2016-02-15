@@ -3,12 +3,14 @@
 
 #include "Figure.h"
 #include "Triangle.h"
+#include "../../pplib/CreateSpecialization.h"
 
 //------------------------------------------------------------------------------
 // Структура FigTriangle, определяющая содержимое треугольника как специализации фигуры
-struct FigTriangle: Figure {
-    Triangle t;
-};
+CREATE_SPECIALIZATION(FigTriangle, Figure, Triangle)
+//struct FigTriangle: Figure {
+//    Triangle t;
+//};
 
 // Задается признак фигуры-треугольника
 const int triangleMark = 0;

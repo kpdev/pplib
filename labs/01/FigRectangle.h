@@ -3,15 +3,18 @@
 
 #include "Figure.h"
 #include "Rectangle.h"
+#include "../../pplib/CreateSpecialization.h"
 
 //------------------------------------------------------------------------------
 // Структура FigRectangle, определяющая содержимое прямоугольника как специализации фигуры
-struct FigRectangle: Figure {
-    Rectangle r;
-};
+
+CREATE_SPECIALIZATION(FigRectangle, Figure, Rectangle)
+//struct FigRectangle: Figure {
+//    Rectangle r;
+//};
 
 // Задается признак фигуры-прямоугольника
-const int rectangleMark = 1;
+//const int rectangleMark = 1;
 
 //------------------------------------------------------------------------------
 //  Функции используемые для обработки прямоугольника как специализации фигуры

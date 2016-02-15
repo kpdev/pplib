@@ -1,6 +1,5 @@
 #include "ClassMarkRegistrar.h"
 
-
 #define REGISTER_SPECIALIZATION(SpecName, IncrFunc, DebugInfo) \
     namespace \
     { \

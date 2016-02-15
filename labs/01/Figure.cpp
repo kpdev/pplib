@@ -9,7 +9,17 @@
 // Значение счетчика формируется в момент работы регистратора очередной фигуры
 // Используется в необходимых случаев для определения числа зарегистрированных
 // обработчиков специализаций
-int figuresCounter = 0;
+//int figuresCounter = 0;
+namespace {
+    int specNumber = 0;
+}
+
+// Функция, возвращающая индекс очередной регистрируемой специализации
+// После этого количество специализаций увеличивается на 1
+int GetSpecNumAndIncrement() {
+    return specNumber++;
+}
+
 
 // Описание переменной, используемой для регистрации функций создания фигур-специализаций
 CreateFigureFileMarkFunc createFigureUseFileMark[10];
@@ -33,7 +43,7 @@ OutFigureFunc outFigure[10];
 // Данный признак может не совпадать с признаком фигуры
 Figure* CreateFigureUseFileMark(int fileMark) {
     Figure* pf;
-    for(int i = 0; i < figuresCounter; i++) {
+    for(int i = 0; i < /*figuresCounter*/ specNumber; i++) {
         pf = createFigureUseFileMark[i](fileMark);
         if(pf != 0) return pf;
     }
