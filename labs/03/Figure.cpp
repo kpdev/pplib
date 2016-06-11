@@ -10,6 +10,11 @@
 // Используется в необходимых случаев для определения числа зарегистрированных
 // обработчиков специализаций
 //int figuresCounter = 0;
+
+// Количество специализаций, зарегистрированных для данного обобщения
+// Начальное значение равно 0
+//int Figure::num = 0;
+
 namespace {
     int specNumber = 0;
 }
@@ -20,21 +25,17 @@ int GetSpecNumAndIncrement() {
     return specNumber++;
 }
 
-
 // Описание переменной, используемой для регистрации функций создания фигур-специализаций
 CreateFigureFileMarkFunc createFigureUseFileMark[10];
-// Счетчик зарегистрированных функций создания фигур-специализаций
-//int createFigureUseFileMarkCounter = 0;
 
 // Описание переменной, используемой для регистрации функций ввода фигур-специализаций
 InFigureValueFunc inFigureValue[10];
-// Счетчик зарегистрированных функций ввода фигур-специализаций
-//int inFigureValueCounter = 0;
 
 // Описание переменной, используемой для регистрации функций вывода фигур-специализаций
 OutFigureFunc outFigure[10];
-// Счетчик зарегистрированных функций ввода фигур-специализаций
-//int outFigureCounter = 0;
+
+// Описание переменной, используемой для регистрации функций вывода фигур-специализаций
+DeleteFigureFunc deleteFigure[10];
 
 //------------------------------------------------------------------------------
 //  Функции используемые для обработки обобщенной фигуры
@@ -43,7 +44,7 @@ OutFigureFunc outFigure[10];
 // Данный признак может не совпадать с признаком фигуры
 Figure* CreateFigureUseFileMark(int fileMark) {
     Figure* pf;
-    for(int i = 0; i < /*figuresCounter*/ specNumber; i++) {
+    for(int i = 0; i < specNumber; i++) {
         pf = createFigureUseFileMark[i](fileMark);
         if(pf != 0) return pf;
     }
@@ -73,4 +74,10 @@ Figure* InFigure(ifstream &ifst) {
 void OutFigure(ofstream &ofst, Figure& f) {
     OutFigureFunc func = outFigure[f.mark];
     func(ofst, f);
+}
+
+// Удаление обобщенной фигуры
+void DeleteFigure(Figure* pf) {
+    DeleteFigureFunc func = deleteFigure[pf->mark];
+    func(pf);
 }

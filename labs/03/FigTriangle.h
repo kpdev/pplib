@@ -3,17 +3,15 @@
 
 #include "Figure.h"
 #include "Triangle.h"
-#include "../../pplib/CreateSpecialization.h"
 
 //------------------------------------------------------------------------------
 // Структура FigTriangle, определяющая содержимое треугольника как специализации фигуры
-CREATE_SPECIALIZATION(FigTriangle, Figure, Triangle)
-//struct FigTriangle: Figure {
-//    Triangle t;
-//};
+struct FigTriangle: Figure {
+    Triangle t;
+};
 
-// Задается признак фигуры-треугольника
-const int triangleMark = 0;
+// Функция возвращающая значение признака для зарегистрированной фигуры
+int GetRegMarkFigTriangle();
 
 //------------------------------------------------------------------------------
 //  Функции используемые для обработки треугольника как специализации фигуры
@@ -30,22 +28,13 @@ FigTriangle* CreateFigTriangleAndInit(int a, int b, int c);
 // Создание фигуры-треугольника как обобщенной фигуры по совпадению маркера из файла
 Figure* CreateFigTriangleUseFileMark(int fileMark);
 
-
-//#include <fstream> - присутствуют в подключаемых файлах
-//using namespace std;
-
 // Ввод специализации фигуры-треугольника из потока
 void In(ifstream &ifst, FigTriangle& ft);
 
 // Вывод специализации фигуры-треугольника в поток
 void Out(ofstream &ofst, FigTriangle& ft);
 
-// Функции - оболочки, используемые для параметризации данной специализации
-
-// Ввод специализации фигуры-треугольника из потока как фигуры
-void InFigTriangleValue(ifstream &ifst, Figure& f);
-
-// Вывод специализации фигуры-треугольника в поток как фигуры
-void OutFigTriangle(ofstream &ofst, Figure& f);
+// Удаление специализации фигуры-треугольника
+void DeleteFigTriangle(FigTriangle* pft);
 
 #endif
