@@ -4,6 +4,9 @@
 #include "Figure.h"
 #include "Triangle.h"
 
+#include "../../pplib/CreateSpecialization.h"
+
+/*
 //------------------------------------------------------------------------------
 // Структура FigTriangle, определяющая содержимое треугольника как специализации фигуры
 struct FigTriangle: Figure {
@@ -12,6 +15,9 @@ struct FigTriangle: Figure {
 
 // Функция возвращающая значение признака для зарегистрированной фигуры
 int GetRegMarkFigTriangle();
+*/
+
+CREATE_SPECIALIZATION(FigTriangle, Figure, Triangle);
 
 //------------------------------------------------------------------------------
 //  Функции используемые для обработки треугольника как специализации фигуры

@@ -15,15 +15,17 @@
 // Начальное значение равно 0
 //int Figure::num = 0;
 
-namespace {
-    int specNumber = 0;
-}
+//namespace {
+//    int specNumber = 0;
+//}
 
 // Функция, возвращающая индекс очередной регистрируемой специализации
 // После этого количество специализаций увеличивается на 1
-int GetSpecNumAndIncrement() {
-    return specNumber++;
-}
+//int GetSpecNumAndIncrement() {
+//    return specNumber++;
+//}
+
+DEFINE_GENERALIZATION_METHOD(Figure);
 
 // Описание переменной, используемой для регистрации функций создания фигур-специализаций
 CreateFigureFileMarkFunc createFigureUseFileMark[10];

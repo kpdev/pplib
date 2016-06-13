@@ -9,8 +9,8 @@ public:
 
     explicit ClassMarkRegistrar(Initializer init, const char* regInfo = nullptr)
     {
-        init();
         if (regInfo != nullptr) std::cout << regInfo << std::endl;
+        init();
     }
 };
 

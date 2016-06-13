@@ -14,7 +14,7 @@ double Perimeter(Triangle& t);
 //------------------------------------------------------------------------------
 //  Функции вычисления периметра треугольника-специализации
 double Perimeter(FigTriangle& ft) {
-    Triangle& t = ft.t;
+    Triangle& t = ft._spec;
     return Perimeter(t);
 }
 

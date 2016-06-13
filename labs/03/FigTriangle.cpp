@@ -3,6 +3,10 @@
 #include <iostream>
 #include "FigTriangle.h"
 
+#include "../../pplib/CreateRegMarkMethod.h"
+#include "../../pplib/RegisterSpecialization.h"
+
+/*
 namespace {
     // Признак, зарегистрированный для данной фигуры (вместо глобальной переменной)
     int regMark = -1;
@@ -26,6 +30,10 @@ namespace {
 
     RegFigTriangle regFigTriangle("Registration of: FigTriangle");
 }
+*/
+
+CREATE_REG_MARK_METHOD(FigTriangle);
+REGISTER_SPECIALIZATION(Figure, FigTriangle, "Registration of: FigTriangle");
 
 //------------------------------------------------------------------------------
 //  Функции используемые для обработки треугольника как специализации фигуры
@@ -33,7 +41,7 @@ namespace {
 // Инициализация существующей фигуры-треугольника
 void Init(FigTriangle& ft, int a, int b, int c) {
     ft.mark = GetRegMarkFigTriangle();
-    Triangle& t = ft.t;
+    Triangle& t = ft._spec;
     Init(t, a, b, c);
 }
 
@@ -53,14 +61,14 @@ FigTriangle* CreateFigTriangleAndInit(int a, int b, int c) {
 
 // Ввод специализации фигуры-треугольника из потока
 void In(ifstream &ifst, FigTriangle& ft) {
-    Triangle& t = ft.t;
+    Triangle& t = ft._spec;
     In(ifst, t);
 }
 
 // Вывод специализации фигуры-треугольника в поток
 void Out(ofstream &ofst, FigTriangle& ft) {
-    ofst << "Triangle is as Specialization of Figure: a = " << ft.t.a 
-         << ", b = " << ft.t.b << ", c = " << ft.t.c << endl;
+    ofst << "Triangle is as Specialization of Figure: a = " << ft._spec.a 
+         << ", b = " << ft._spec.b << ", c = " << ft._spec.c << endl;
 }
 
 // Удаление специализации фигуры-треугольника

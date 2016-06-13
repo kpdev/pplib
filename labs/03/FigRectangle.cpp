@@ -3,6 +3,10 @@
 #include <iostream>
 #include "FigRectangle.h"
 
+#include "../../pplib/CreateRegMarkMethod.h"
+#include "../../pplib/RegisterSpecialization.h"
+
+/*
 namespace {
     // Признак, зарегистрированный для данной фигуры (вместо глобальной переменной)
     int regMark = -1;
@@ -26,6 +30,11 @@ namespace {
 
     RegFigRectangle regFigRectangle("Registration of: FigRectangle");
 }
+*/
+
+CREATE_REG_MARK_METHOD(FigRectangle);
+REGISTER_SPECIALIZATION(Figure, FigRectangle, "Registration of: FigRectangle");
+
 
 //------------------------------------------------------------------------------
 //  Функции используемые для обработки прямоугольника как специализации фигуры
@@ -33,7 +42,7 @@ namespace {
 // Инициализация существующей фигуры-прямоугольника
 void Init(FigRectangle& fr, int x, int y) {
     fr.mark = GetRegMarkFigRectangle();
-    Rectangle& r = fr.r;
+    Rectangle& r = fr._spec;
     Init(r, x, y);
 }
 
@@ -53,13 +62,13 @@ FigRectangle* CreateFigRectangleAndInit(int x, int y) {
 
 // Ввод специализации фигуры-прямоугольника из потока
 void In(ifstream &ifst, FigRectangle& fr) {
-    Rectangle& r = fr.r;
+    Rectangle& r = fr._spec;
     In(ifst, r);
 }
 
 // Вывод специализации фигуры-прямоугольника в поток
 void Out(ofstream &ofst, FigRectangle& fr) {
-    ofst << "Rectangle is as Specialization of Figure: x = " << fr.r.x << ", y = " << fr.r.y << endl;
+    ofst << "Rectangle is as Specialization of Figure: x = " << fr._spec.x << ", y = " << fr._spec.y << endl;
 }
 
 // Удаление специализации фигуры-прямоугольника

@@ -14,7 +14,7 @@ double Perimeter(Rectangle& r);
 //------------------------------------------------------------------------------
 //  Функции вычисления периметра прямоугольника-специализации
 double Perimeter(FigRectangle& fr) {
-    Rectangle& r = fr.r;
+    Rectangle& r = fr._spec;
     return Perimeter(r);
 }
 

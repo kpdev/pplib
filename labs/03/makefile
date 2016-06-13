@@ -1,6 +1,6 @@
 CC = g++
 #CFLAGS = -O0 -D DEBUG
-CFLAGS = -O0 -g -std=c++14
+CFLAGS = -O0 -g -std=c++11
 
 BUILD_PATH = _build/obj/
 BUILD_PATHEXE = _build/
