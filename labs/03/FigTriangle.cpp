@@ -5,6 +5,7 @@
 
 #include "../../pplib/CreateRegMarkMethod.h"
 #include "../../pplib/RegisterSpecialization.h"
+#include "../../pplib/RegisterMethod.h"
 
 /*
 namespace {
@@ -90,7 +91,7 @@ namespace {
         }
         return 0;
     }
-
+/*
     // Регистрация функции создания фигуры-треугольника как обобщенной фигуры по совпадению маркера из файла
     class RegCreateFigTriangleUseFileMark {
     public:
@@ -106,6 +107,10 @@ namespace {
 
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     RegCreateFigTriangleUseFileMark regCreateFigTriangleUseFileMark("Registration of CreateFigTriangleUseFileMark");
+*/
+
+REGISTER_METHOD(CreateFigureFileMarkFuncArray, CreateFigTriangleUseFileMark, GetRegMarkFigTriangle(), "Registration of CreateFigTriangleUseFileMark");
+
 }
 
 namespace {
@@ -120,7 +125,7 @@ namespace {
             throw; // Exeption;
         }
     }
-
+/*
     // Регистратор функции ввода специализации фигуры-треугольника из потока как фигуры.
     class RegInFigTriangleValue {
     public:
@@ -133,6 +138,9 @@ namespace {
     };
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     RegInFigTriangleValue regInFigTriangleValue("Registration of InFigTriangleValue");
+*/
+REGISTER_METHOD(InFigureValueFuncArray, InFigTriangleValue, GetRegMarkFigTriangle(), "Registration of InFigTriangleValue");
+
 }
 
 namespace {
@@ -147,7 +155,7 @@ namespace {
             throw; // Exeption;
         }
     }
-
+/*
     // Регистратор функции ввода специализации фигуры-треугольника из потока как фигуры.
     class RegOutFigTriangle {
     public:
@@ -160,6 +168,9 @@ namespace {
     };
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     RegOutFigTriangle regOutFigTriangle("Registration of OutFigTriangle");
+*/
+REGISTER_METHOD(OutFigureFuncArray, OutFigTriangle, GetRegMarkFigTriangle(), "Registration of OutFigTriangle");
+
 }
 
 namespace {
@@ -174,7 +185,7 @@ namespace {
             throw; // Exeption;
         }
     }
-
+/*
     // Регистратор функции ввода специализации фигуры-треугольника из потока как фигуры.
     class RegDeleteFigTriangleSkin {
     public:
@@ -187,4 +198,8 @@ namespace {
     };
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     RegDeleteFigTriangleSkin regDeleteFigTriangleSkin("Registration of DeleteFigTriangleSkin");
+*/
+
+REGISTER_METHOD(DeleteFigureFuncArray, DeleteFigTriangleSkin, GetRegMarkFigTriangle(), "Registration of DeleteFigTriangleSkin");
+
 }

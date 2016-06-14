@@ -28,16 +28,23 @@
 DEFINE_GENERALIZATION_METHOD(Figure);
 
 // Описание переменной, используемой для регистрации функций создания фигур-специализаций
-CreateFigureFileMarkFunc createFigureUseFileMark[10];
+//CreateFigureFileMarkFunc createFigureUseFileMark[10];
 
 // Описание переменной, используемой для регистрации функций ввода фигур-специализаций
-InFigureValueFunc inFigureValue[10];
+//InFigureValueFunc inFigureValue[10];
 
 // Описание переменной, используемой для регистрации функций вывода фигур-специализаций
-OutFigureFunc outFigure[10];
+//OutFigureFunc outFigure[10];
 
 // Описание переменной, используемой для регистрации функций вывода фигур-специализаций
-DeleteFigureFunc deleteFigure[10];
+//DeleteFigureFunc deleteFigure[10];
+
+static const unsigned specializationMax = 10;
+DEFINE_GEN_FUNC(CreateFigureFileMarkFunc, 	specializationMax);
+DEFINE_GEN_FUNC(InFigureValueFunc, 			specializationMax);
+DEFINE_GEN_FUNC(OutFigureFunc, 				specializationMax);
+DEFINE_GEN_FUNC(DeleteFigureFunc, 			specializationMax);
+
 
 //------------------------------------------------------------------------------
 //  Функции используемые для обработки обобщенной фигуры
@@ -47,7 +54,7 @@ DeleteFigureFunc deleteFigure[10];
 Figure* CreateFigureUseFileMark(int fileMark) {
     Figure* pf;
     for(int i = 0; i < specNumber; i++) {
-        pf = createFigureUseFileMark[i](fileMark);
+        pf = CreateFigureFileMarkFuncArray[i](fileMark);
         if(pf != 0) return pf;
     }
     return 0;
@@ -56,7 +63,7 @@ Figure* CreateFigureUseFileMark(int fileMark) {
 // Ввод значений полей фигуры-специализаии из потока через обобщенную функцию
 // после определения маркера фигуры из файла и создания конкретной фигуры
 void InFigureValue(ifstream &ifst, Figure& f) {
-    InFigureValueFunc func = inFigureValue[f.mark];
+    InFigureValueFunc func = InFigureValueFuncArray[f.mark];
     func(ifst, f);
 }
 
@@ -74,12 +81,12 @@ Figure* InFigure(ifstream &ifst) {
 
 // Вывод обобщенной фигуры в поток
 void OutFigure(ofstream &ofst, Figure& f) {
-    OutFigureFunc func = outFigure[f.mark];
+    OutFigureFunc func = OutFigureFuncArray[f.mark];
     func(ofst, f);
 }
 
 // Удаление обобщенной фигуры
 void DeleteFigure(Figure* pf) {
-    DeleteFigureFunc func = deleteFigure[pf->mark];
+    DeleteFigureFunc func = DeleteFigureFuncArray[pf->mark];
     func(pf);
 }

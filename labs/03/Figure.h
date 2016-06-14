@@ -4,6 +4,7 @@
 #include <fstream>
 
 #include "../../pplib/CreateGeneralization.h"
+#include "../../pplib/CreateGenFunc.h"
 
 using namespace std;
 
@@ -34,25 +35,37 @@ CREATE_GENERALIZATION(Figure);
 
 // Указатель на функцию, осуществляющую создание фигуры-специализации по признаку из файла
 // с возвратом ее как обобщенной фигуры
-typedef Figure* (*CreateFigureFileMarkFunc)(int fileMark);
+//typedef Figure* (*CreateFigureFileMarkFunc)(int fileMark);
 // Описание переменной, используемой для регистрации функций создания фигур-специализаций
-extern CreateFigureFileMarkFunc createFigureUseFileMark[];
+//extern CreateFigureFileMarkFunc createFigureUseFileMark[];
+
+DECLARE_GEN_FUNC(CreateFigureFileMarkFunc, Figure*, int);
+
 
 // Указатель на функцию, осуществляющую ввод значения фигуры-специализации из файла
 // при уже установленном признаке фигуры
-typedef void (*InFigureValueFunc)(ifstream &ifst, Figure& f);
+//typedef void (*InFigureValueFunc)(ifstream &ifst, Figure& f);
 // Описание переменной, используемой для регистрации функций ввода фигур-специализаций
-extern InFigureValueFunc inFigureValue[];
+//extern InFigureValueFunc inFigureValue[];
+
+DECLARE_GEN_FUNC(InFigureValueFunc, void, ifstream&, Figure&);
+
 
 // Указатель на функцию, осуществляющую вывод существующей фигуры-специализации в файл
-typedef void (*OutFigureFunc)(ofstream &ofst, Figure& f);
+//typedef void (*OutFigureFunc)(ofstream &ofst, Figure& f);
 // Описание переменной, используемой для регистрации функций вывода фигур-специализаций
-extern OutFigureFunc outFigure[];
+//extern OutFigureFunc outFigure[];
+
+DECLARE_GEN_FUNC(OutFigureFunc, void, ofstream&, Figure&);
+
 
 // Указатель на функцию, осуществляющую удаление существующей фигуры-специализации
-typedef void (*DeleteFigureFunc)(Figure* f);
+//typedef void (*DeleteFigureFunc)(Figure* f);
 // Описание переменной, используемой для регистрации функций вывода фигур-специализаций
-extern DeleteFigureFunc deleteFigure[];
+//extern DeleteFigureFunc deleteFigure[];
+
+DECLARE_GEN_FUNC(DeleteFigureFunc, void, Figure*);
+
 
 //------------------------------------------------------------------------------
 //  Функции используемые для обработки фигуры
