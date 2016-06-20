@@ -82,8 +82,7 @@ void DeleteFigRectangle(FigRectangle* pfr) {
 // Регистрируемые в соответствующих параметрических массивах
 //=============================================================================
 namespace {
- /*
-  // Создание фигуры-прямоугольника как обобщенной фигуры по совпадению маркера из файла
+    // Создание фигуры-прямоугольника как обобщенной фигуры по совпадению маркера из файла
     Figure* CreateFigRectangleUseFileMark(int fileMark) {
         if(fileMark == 1) {
             // Создается прямоугольник-специализация
@@ -92,7 +91,7 @@ namespace {
         }
         return 0;
     }
-
+/*
     // Регистрация функции создания фигуры-прямоугольника как обобщенной фигуры по совпадению маркера из файла
     class RegCreateFigRectangleUseFileMark {
     public:
@@ -109,12 +108,7 @@ namespace {
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     RegCreateFigRectangleUseFileMark regCreateFigRectangleUseFileMark("Registration of CreateFigRectangleUseFileMark");
 */
-//REGISTER_METHOD(CreateFigureFileMarkFuncArray, CreateFigRectangleUseFileMark, GetRegMarkFigRectangle(), "Registration of CreateFigRectangleUseFileMark");
-
-
-REGISTER_METHOD_WITH_CHECK_RET_PTR(CreateFigureFileMarkFuncArray, CreateFigRectangle, GetRegMarkFigRectangle(), "Registration of CreateFigRectangleUseFileMark", 1, Figure); 
-
-
+REGISTER_METHOD(CreateFigureFileMarkFuncArray, CreateFigRectangleUseFileMark, GetRegMarkFigRectangle(), "Registration of CreateFigRectangleUseFileMark");
 
 }
 
