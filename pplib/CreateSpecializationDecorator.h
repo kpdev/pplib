@@ -2,4 +2,5 @@
     struct Name : BaseName { \
         AddFieldType AddFieldName; \
         BaseName* GeneralizationName; \
-    };
+    }; \
+	int GetRegMark##Name();
