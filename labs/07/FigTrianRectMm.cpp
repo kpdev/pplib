@@ -7,6 +7,7 @@
 #include "FigMm.h"
 #include <iostream>
 
+#include "../../pplib/CreateMMSpec.h"
 
 //------------------------------------------------------------------------------
 // Функции-обработчики специализаций
@@ -49,7 +50,7 @@ void RectRectOut(FigRectangle& fr1, FigRectangle& fr2, ofstream &ofst) {
 
 //------------------------------------------------------------------------------
 // Функции-оболочки над обработчикаи специализаций
-
+/*
 // Оболочка вокруг обработчика двух треугольников
 void MmTrianTrianSpecOut(Figure& f1, Figure& f2, ofstream& ofst) {
     // Проверка на всякий случай
@@ -61,7 +62,11 @@ void MmTrianTrianSpecOut(Figure& f1, Figure& f2, ofstream& ofst) {
         throw; // Exeption;
     }
 }
+*/
 
+CREATE_MM_SPEC(MmTrianTrianSpecOut, Figure, FigTriangle, FigTriangle, GetRegMarkFigTriangle, GetRegMarkFigTriangle, TrianTrianOut);
+
+/*
 // Оболочка вокруг обработчика треугольника с прямоугольником
 void MmTrianRectSpecOut(Figure& f1, Figure& f2, ofstream &ofst) {
     // Проверка на всякий случай
@@ -73,7 +78,11 @@ void MmTrianRectSpecOut(Figure& f1, Figure& f2, ofstream &ofst) {
         throw; // Exeption;
     }
 }
+*/
 
+CREATE_MM_SPEC(MmTrianRectSpecOut, Figure, FigTriangle, FigRectangle, GetRegMarkFigTriangle, GetRegMarkFigRectangle, TrianRectOut);
+
+/*
 // Оболочка вокруг обработчика прямоугольника с треугольником
 void MmRectTrianSpecOut(Figure& f1, Figure& f2, ofstream &ofst) {
     // Проверка на всякий случай
@@ -85,7 +94,13 @@ void MmRectTrianSpecOut(Figure& f1, Figure& f2, ofstream &ofst) {
         throw; // Exeption;
     }
 }
+*/
 
+
+CREATE_MM_SPEC(MmRectTrianSpecOut, Figure, FigRectangle, FigTriangle, GetRegMarkFigRectangle, GetRegMarkFigTriangle, RectTrianOut);
+
+
+/*
 // Оболочка вокруг обработчика двух прямоугольников
 void MmRectRectSpecOut(Figure& f1, Figure& f2, ofstream &ofst) {
     // Проверка на всякий случай
@@ -97,6 +112,9 @@ void MmRectRectSpecOut(Figure& f1, Figure& f2, ofstream &ofst) {
         throw; // Exeption;
     }
 }
+*/
+
+CREATE_MM_SPEC(MmRectRectSpecOut, Figure, FigRectangle, FigRectangle, GetRegMarkFigRectangle, GetRegMarkFigRectangle, RectRectOut);
 
 //------------------------------------------------------------------------------
 // Организация регистрации функции вычисления периметра, 
