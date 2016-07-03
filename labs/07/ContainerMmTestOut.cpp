@@ -3,9 +3,15 @@
 
 #include "Container.h"
 
+#include "../../pplib/CreateMM.h"
+
 // Прототип мультиметода, осуществляющего сопоставление двух фигур
 // с выводом информации об их комбинации
-void Multimethod(ofstream& ofst, Figure& f1, Figure& f2);
+
+//void MultimethodFuncMM(Figure& f1, Figure& f2, ofstream &o);
+
+DECLARE_MM(MultimethodFunc, 10, Figure, ofstream&)
+
 
 // Функция, осуществляющая перебор парных комбинаций для всех элементов контейнера
 // Запускает мультиметод для каждой пары
@@ -15,7 +21,7 @@ void MultimethodTestOut(ofstream& ofst, Container& c) {
             Figure* pf1 = c.storage[i];
             Figure* pf2 = c.storage[j];
             ofst << "[" << i << "][" << j << "]: ";
-            Multimethod(ofst, *pf1, *pf2);
+            MultimethodFuncMM<ofstream&>(*pf1, *pf2, ofst);
         }
     }
 }

@@ -14,10 +14,10 @@ typedef void (*MultimethodFunc)(ofstream& ofst, Figure& f1, Figure& f2);
 extern MultimethodFunc multimethodFunc[][10];
 */
 
-DECLARE_MM(MultimethodFunc, 10, void, ofstream&, Figure&, Figure&)
+DECLARE_MM(MultimethodFunc, 10, Figure, ofstream&)
 
 //------------------------------------------------------------------------------
 //  Функция, реализующая мультиметод для двух обобщенных фигур
-void Multimethod(ofstream& ofst, Figure& f1, Figure& f2);
+//void Multimethod(ofstream& ofst, Figure& f1, Figure& f2);
 
 #endif
