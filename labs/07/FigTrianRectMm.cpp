@@ -116,6 +116,7 @@ void MmRectRectSpecOut(Figure& f1, Figure& f2, ofstream &ofst) {
 
 CREATE_MM_SPEC(MmRectRectSpecOut, Figure, FigRectangle, FigRectangle, GetRegMarkFigRectangle, GetRegMarkFigRectangle, RectRectOut);
 
+/*
 //------------------------------------------------------------------------------
 // Организация регистрации функции вычисления периметра, 
 // обеспечивающей процедурно-параметрический полиморфизм
@@ -145,3 +146,27 @@ namespace {
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     Register trianRegisterPerimeter("Registration of: Different combination of Triangle and Rectangle in  Multimethod");
 }
+*/
+
+BEGIN_REG_MM(MultimethodFuncMMArray);
+
+REG_MM_SPEC(MmTrianTrianSpecOut, GetRegMarkFigTriangle, GetRegMarkFigTriangle);
+REG_MM_SPEC(MmTrianRectSpecOut, GetRegMarkFigTriangle, GetRegMarkFigRectangle);
+REG_MM_SPEC(MmRectTrianSpecOut, GetRegMarkFigRectangle, GetRegMarkFigTriangle);
+REG_MM_SPEC(MmRectRectSpecOut, GetRegMarkFigRectangle, GetRegMarkFigRectangle);
+
+END_REG_MM("Registration of: Different combination of Triangle and Rectangle in  Multimethod");
+
+
+
+
+
+
+
+
+
+
+
+
+
+

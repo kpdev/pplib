@@ -1,4 +1,6 @@
 
+#ifndef CREATE_GENERALIZATION_HEADER_GUARD
+#define CREATE_GENERALIZATION_HEADER_GUARD
 
 #define CREATE_GENERALIZATION(Name) \
 struct Name { \
@@ -13,3 +15,6 @@ namespace { \
 int GetSpecNumAndIncrement##Name() { \
     return specNumber++; \
 }
+
+#endif // CREATE_GENERALIZATION_HEADER_GUARD
+

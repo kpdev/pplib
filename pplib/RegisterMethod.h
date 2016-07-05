@@ -1,3 +1,7 @@
+
+#ifndef REGISTER_METHOD_HEADER_GUARD
+#define REGISTER_METHOD_HEADER_GUARD
+
 #include "MethodRegistrar.h"
 
 #define REGISTER_METHOD(Container, Method, Mark, DebugInfo) \
@@ -12,3 +16,6 @@
 		return nullptr; \
 	} \
 	REGISTER_METHOD(Container, __Inner_Check_##Method, GenMark, DebugInfo);
+
+#endif // REGISTER_METHOD_HEADER_GUARD
+

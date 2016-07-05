@@ -1,3 +1,6 @@
+#ifndef METHOD_REGISTRAR_HEADER_GUARD
+#define METHOD_REGISTRAR_HEADER_GUARD
+
 #include <iostream>
 
 class MethodRegistrar
@@ -18,4 +21,5 @@ public:
     }
 };
 
+#endif // METHOD_REGISTRAR_HEADER_GUARD
 

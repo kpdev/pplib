@@ -1,4 +1,7 @@
 
+#ifndef CREATE_MM_HEADER_GUARD
+#define CREATE_MM_HEADER_GUARD
+
 #define DECLARE_MM(TypeName, Dimention, BaseType, ...) \
 typedef void (*TypeName)(BaseType&, BaseType&, __VA_ARGS__); \
 extern TypeName TypeName##MMArray[][Dimention]; \
@@ -16,3 +19,6 @@ TypeName TypeName##MM##Array[Dimention][Dimention]; \
 //	#include <memory>
 //	...
 //	(TypeName##MMArray[p1.mark][p2.mark])( p1, p2, std::forward<ArgsT>(args)... );
+
+#endif // CREATE_MM_HEADER_GUARD
+

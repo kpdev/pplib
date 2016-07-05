@@ -1,3 +1,7 @@
+
+#ifndef REGISTER_SPECIALIZATION_HEADER_GUARD
+#define REGISTER_SPECIALIZATION_HEADER_GUARD
+
 #include "ClassMarkRegistrar.h"
 
 #define REGISTER_SPECIALIZATION_OLD_VERSION(SpecName, IncrFunc, DebugInfo) \
@@ -22,3 +26,6 @@
         } \
         ClassMarkRegistrar reg##SpecName(InitRegMark##SpecName, DebugInfo); \
     }
+
+#endif // REGISTER_SPECIALIZATION_HEADER_GUARD
+

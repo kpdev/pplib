@@ -1,3 +1,7 @@
+
+#ifndef CLASS_MARK_REGISTRAR_HEADER_GUARD
+#define CLASS_MARK_REGISTRAR_HEADER_GUARD
+
 #include <iostream>
 
 int GetSpecNumAndIncrement(); // TODO: move to its own header
@@ -15,5 +19,5 @@ public:
 };
 
 
-
+#endif // CLASS_MARK_REGISTRAR_HEADER_GUARD
 
