@@ -109,7 +109,7 @@ namespace {
     RegCreateFigTriangleUseFileMark regCreateFigTriangleUseFileMark("Registration of CreateFigTriangleUseFileMark");
 */
 
-REGISTER_METHOD(CreateFigureFileMarkFuncArray, CreateFigTriangleUseFileMark, GetRegMarkFigTriangle(), "Registration of CreateFigTriangleUseFileMark");
+REGISTER_METHOD(CreateFigureUseFileMarkFuncArray, CreateFigTriangleUseFileMark, GetRegMarkFigTriangle(), "Registration of CreateFigTriangleUseFileMark");
 
 }
 

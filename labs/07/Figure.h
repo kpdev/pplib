@@ -9,10 +9,10 @@
 using namespace std;
 
 CREATE_GENERALIZATION(Figure);
-DECLARE_GEN_FUNC(CreateFigureFileMarkFunc, Figure*, int);
-DECLARE_GEN_FUNC(InFigureValueFunc, void, ifstream&, Figure&);
-DECLARE_GEN_FUNC(OutFigureFunc, void, ofstream&, Figure&);
-DECLARE_GEN_FUNC(DeleteFigureFunc, void, Figure*);
+DECLARE_GEN_FUNC(CreateFigureUseFileMark, Figure*, int);
+DECLARE_GEN_FUNC(InFigureValue, void, ifstream&, Figure&);
+DECLARE_GEN_FUNC(OutFigure, void, ofstream&, Figure&);
+DECLARE_GEN_FUNC(DeleteFigure, void, Figure*);
 
 /*
 //------------------------------------------------------------------------------
@@ -66,19 +66,19 @@ extern DeleteFigureFunc deleteFigure[];
 
 // Создание незаполненной обобщенной фигуры по значению признака из файла
 // Данный признак может не совпадать с признаком фигуры
-Figure* CreateFigureUseFileMark(int fileMark);
+//Figure* CreateFigureUseFileMark(int fileMark);
 
 // Ввод значений полей фигуры-специализации из потока через обобщенную функцию
 // после определения маркера фигуры из файла и создания конкретной фигуры
-void InFigureValue(ifstream &ifst, Figure& f);
+//void InFigureValue(ifstream &ifst, Figure& f);
 
 // Ввод обобщенной фигуры из потока
 Figure* InFigure(ifstream &ifst);
 
 // Вывод обобщенной фигуры в поток
-void OutFigure(ofstream &ofst, Figure& f);
+//void OutFigure(ofstream &ofst, Figure& f);
 
 // Удаление обобщенной фигуры
-void DeleteFigure(Figure* pf);
+//void DeleteFigure(Figure* pf);
 
 #endif

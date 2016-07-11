@@ -41,7 +41,7 @@ DeleteFigureFunc deleteFigure[10];
 DEFINE_GENERALIZATION_METHOD(Figure);
 
 static const unsigned specializationMax = 10;
-DEFINE_GEN_FUNC(CreateFigureFileMarkFunc, 	specializationMax);
+DEFINE_GEN_FUNC(CreateFigureUseFileMarkFunc, 	specializationMax);
 DEFINE_GEN_FUNC(InFigureValueFunc, 			specializationMax);
 DEFINE_GEN_FUNC(OutFigureFunc, 				specializationMax);
 DEFINE_GEN_FUNC(DeleteFigureFunc, 			specializationMax);
@@ -54,7 +54,7 @@ DEFINE_GEN_FUNC(DeleteFigureFunc, 			specializationMax);
 Figure* CreateFigureUseFileMark(int fileMark) {
     Figure* pf;
     for(int i = 0; i < specNumber; i++) {
-        pf = CreateFigureFileMarkFuncArray[i](fileMark);
+        pf = CreateFigureUseFileMarkFuncArray[i](fileMark);
         if(pf != 0) return pf;
     }
     return 0;

@@ -112,7 +112,7 @@ namespace {
 //REGISTER_METHOD(CreateFigureFileMarkFuncArray, CreateFigRectangleUseFileMark, GetRegMarkFigRectangle(), "Registration of CreateFigRectangleUseFileMark");
 
 
-REGISTER_METHOD_WITH_CHECK_RET_PTR(CreateFigureFileMarkFuncArray, CreateFigRectangle, GetRegMarkFigRectangle(), "Registration of CreateFigRectangleUseFileMark", 1, Figure); 
+REGISTER_METHOD_WITH_CHECK_RET_PTR(CreateFigureUseFileMarkFuncArray, CreateFigRectangle, GetRegMarkFigRectangle(), "Registration of CreateFigRectangleUseFileMark", 1, Figure); 
 
 
 
