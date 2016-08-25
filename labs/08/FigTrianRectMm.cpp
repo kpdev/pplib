@@ -16,36 +16,36 @@
 void TrianTrianOut(FigTriangle& ft1, FigTriangle& ft2, ofstream &ofst) {
     ofst << "This is two Triangles" << endl;
     ofst << "     ";
-    Out(ofst, ft1);
+    Out(ft1, ofst);
     ofst << "     ";
-    Out(ofst, ft2);
+    Out(ft2, ofst);
 }
 
 //  Обработчик специализации, вычисляющий отношения между треугольником и прямоугольником
 void TrianRectOut(FigTriangle& ft1, FigRectangle& fr2, ofstream &ofst) {
     ofst << "We have Triangle and Rectangle" << endl;
     ofst << "     ";
-    Out(ofst, ft1);
+    Out(ft1, ofst);
     ofst << "     ";
-    Out(ofst, fr2);
+    Out(fr2, ofst);
 }
 
 //  Обработчик специализации, вычисляющий отношения между прямоугольником и треугольником
 void RectTrianOut(FigRectangle& fr1, FigTriangle& ft2, ofstream &ofst) {
     ofst << "The first figure is Rectangle and second is Triangle" << endl;
     ofst << "     ";
-    Out(ofst, fr1);
+    Out(fr1, ofst);
     ofst << "     ";
-    Out(ofst, ft2);
+    Out(ft2, ofst);
 }
 
 //  Обработчик специализации, вычисляющий отношения между двумя прямоугольниками
 void RectRectOut(FigRectangle& fr1, FigRectangle& fr2, ofstream &ofst) {
     ofst << "Rectangle + Rectangle = Two Rectangles" << endl;
     ofst << "     ";
-    Out(ofst, fr1);
+    Out(fr1, ofst);
     ofst << "     ";
-    Out(ofst, fr2);
+    Out(fr2, ofst);
 }
 
 //------------------------------------------------------------------------------

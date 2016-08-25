@@ -61,19 +61,19 @@ FigCircle* CreateFigCircleAndInit(int r) {
 }
 
 // Ввод специализации фигуры-круга из потока
-void In(ifstream &ifst, FigCircle& fc) {
+void In(FigCircle& fc, ifstream &ifst) {
     Circle& c = fc._spec;
     In(ifst, c);
 }
 
 // Вывод специализации фигуры-круга в поток
-void Out(ofstream &ofst, FigCircle& fc) {
+void Out(FigCircle& fc, ofstream &ofst) {
     ofst << "Circle is as Specialization of Figure: r = " << fc._spec.r << endl;
 }
 
 // Удаление специализации фигуры-круга
-void DeleteFigCircle(FigCircle* pfc) {
-    delete pfc;
+void DeleteFigCircle(FigCircle& pfc) {
+    delete &pfc;
 }
 
 
@@ -81,6 +81,7 @@ void DeleteFigCircle(FigCircle* pfc) {
 // Функции - оболочки, используемые для параметризации данной специализации,
 // Регистрируемые в соответствующих параметрических массивах
 //=============================================================================
+/*
 namespace {
     // Создание фигуры-круга как обобщенной фигуры по совпадению маркера из файла
     Figure* CreateFigCircleUseFileMark(int fileMark) {
@@ -91,7 +92,7 @@ namespace {
         }
         return 0;
     }
-/*
+
     // Регистрация функции создания фигуры-круга как обобщенной фигуры по совпадению маркера из файла
     class RegCreateFigCircleUseFileMark {
     public:
@@ -107,12 +108,15 @@ namespace {
 
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     RegCreateFigCircleUseFileMark regCreateFigCircleUseFileMark("Registration of CreateFigCircleUseFileMark");
-*/
 
 REGISTER_METHOD(CreateFigureUseFileMarkFuncArray, CreateFigCircleUseFileMark, GetRegMarkFigCircle(), "Registration of CreateFigCircleUseFileMark");
 
 }
+*/
 
+REGISTER_METHOD_WITH_CHECK_RET_PTR(CreateFigureUseFileMarkFuncArray, CreateFigCircle, GetRegMarkFigCircle(), "Registration of CreateFigCircleUseFileMark", 3, Figure);
+
+/*
 namespace {
     // Ввод специализации фигуры-круга из потока как фигуры
     void InFigCircleValue(ifstream &ifst, Figure& f) {
@@ -125,7 +129,7 @@ namespace {
             throw; // Exeption;
         }
     }
-/*
+
     // Регистратор функции ввода специализации фигуры-круга из потока как фигуры.
     class RegInFigCircleValue {
     public:
@@ -138,12 +142,15 @@ namespace {
     };
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     RegInFigCircleValue regInFigCircleValue("Registration of InFigCircleValue");
-*/
 
 REGISTER_METHOD(InFigureValueFuncArray, InFigCircleValue, GetRegMarkFigCircle(), "Registration of InFigCircleValue");
 
 }
+*/
 
+REGISTER_METHOD_WITH_CHECK(InFigureValueFuncArray, In, GetRegMarkFigCircle(), "Registration of InFigCircleValue", FigCircle, Figure, ifstream&);
+
+/*
 namespace {
     // Вывод специализации фигуры-круга в поток как фигуры
     void OutFigCircle(ofstream &ofst, Figure& f) {
@@ -156,7 +163,7 @@ namespace {
             throw; // Exeption;
         }
     }
-/*
+
     // Регистратор функции ввода специализации фигуры-круга из потока как фигуры.
     class RegOutFigCircle {
     public:
@@ -169,12 +176,15 @@ namespace {
     };
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     RegOutFigCircle regOutFigCircle("Registration of OutFigCircle");
-*/
 
 REGISTER_METHOD(OutFigureFuncArray, OutFigCircle, GetRegMarkFigCircle(), "Registration of OutFigCircle");
 
 }
+*/
 
+REGISTER_METHOD_WITH_CHECK(OutFigureFuncArray, Out, GetRegMarkFigCircle(), "Registration of OutFigCircle", FigCircle, Figure, ofstream&);
+
+/*
 namespace {
     // Удаление специализации фигуры-круга как обобщенной фигуры
     void DeleteFigCircleSkin(Figure* pf) {
@@ -187,7 +197,7 @@ namespace {
             throw; // Exeption;
         }
     }
-/*
+
     // Регистратор функции ввода специализации фигуры-круга из потока как фигуры.
     class RegDeleteFigCircleSkin {
     public:
@@ -200,8 +210,11 @@ namespace {
     };
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     RegDeleteFigCircleSkin regDeleteFigCircleSkin("Registration of DeleteFigCircleSkin");
-*/
 
 REGISTER_METHOD(DeleteFigureFuncArray, DeleteFigCircleSkin, GetRegMarkFigCircle(), "Registration of DeleteFigCircleSkin");
 
 }
+*/
+
+REGISTER_METHOD_WITH_CHECK(DeleteFigureFuncArray, DeleteFigCircle, GetRegMarkFigCircle(), "Registration of DeleteFigCircleSkin", FigCircle, Figure);
+

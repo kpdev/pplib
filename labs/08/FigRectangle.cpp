@@ -61,19 +61,19 @@ FigRectangle* CreateFigRectangleAndInit(int x, int y) {
 }
 
 // Ввод специализации фигуры-прямоугольника из потока
-void In(ifstream &ifst, FigRectangle& fr) {
+void In(FigRectangle& fr, ifstream &ifst) {
     Rectangle& r = fr._spec;
     In(ifst, r);
 }
 
 // Вывод специализации фигуры-прямоугольника в поток
-void Out(ofstream &ofst, FigRectangle& fr) {
+void Out(FigRectangle& fr, ofstream &ofst) {
     ofst << "Rectangle is as Specialization of Figure: x = " << fr._spec.x << ", y = " << fr._spec.y << endl;
 }
 
 // Удаление специализации фигуры-прямоугольника
-void DeleteFigRectangle(FigRectangle* pfr) {
-    delete pfr;
+void DeleteFigRectangle(FigRectangle& pfr) {
+    delete &pfr;
 }
 
 
@@ -81,8 +81,9 @@ void DeleteFigRectangle(FigRectangle* pfr) {
 // Функции - оболочки, используемые для параметризации данной специализации,
 // Регистрируемые в соответствующих параметрических массивах
 //=============================================================================
+
+/*
 namespace {
- /*
   // Создание фигуры-прямоугольника как обобщенной фигуры по совпадению маркера из файла
     Figure* CreateFigRectangleUseFileMark(int fileMark) {
         if(fileMark == 1) {
@@ -108,29 +109,29 @@ namespace {
 
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     RegCreateFigRectangleUseFileMark regCreateFigRectangleUseFileMark("Registration of CreateFigRectangleUseFileMark");
-*/
+
 //REGISTER_METHOD(CreateFigureFileMarkFuncArray, CreateFigRectangleUseFileMark, GetRegMarkFigRectangle(), "Registration of CreateFigRectangleUseFileMark");
+
+}
+*/
 
 
 REGISTER_METHOD_WITH_CHECK_RET_PTR(CreateFigureUseFileMarkFuncArray, CreateFigRectangle, GetRegMarkFigRectangle(), "Registration of CreateFigRectangleUseFileMark", 1, Figure); 
 
-
-
-}
-
+/*
 namespace {
     // Ввод специализации фигуры-прямоугольника из потока как фигуры
     void InFigRectangleValue(ifstream &ifst, Figure& f) {
         // Проверка на всякий случай
         if(f.mark == GetRegMarkFigRectangle()) {
-            In(ifst, static_cast<FigRectangle&>(f));
+            In(static_cast<FigRectangle&>(f), ifst);
         }
         else {
             cerr << "InFigRectangle: Incorrect convertion Figure to FigRectangle" << endl;
             throw; // Exeption;
         }
     }
-/*
+
     // Регистратор функции ввода специализации фигуры-прямоугольника из потока как фигуры.
     class RegInFigRectangleValue {
     public:
@@ -143,11 +144,13 @@ namespace {
     };
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     RegInFigRectangleValue regInFigRectangleValue("Registration of InFigRectangleValue");
-*/
-REGISTER_METHOD(InFigureValueFuncArray, InFigRectangleValue, GetRegMarkFigRectangle(), "Registration of InFigRectangleValue");
-
+//REGISTER_METHOD(InFigureValueFuncArray, InFigRectangleValue, GetRegMarkFigRectangle(), "Registration of InFigRectangleValue");
 }
+*/
 
+REGISTER_METHOD_WITH_CHECK(InFigureValueFuncArray, In, GetRegMarkFigRectangle(), "Registration of InFigRectangleValue", FigRectangle, Figure, ifstream&);
+
+/*
 namespace {
     // Вывод специализации фигуры-прямоугольника в поток как фигуры
     void OutFigRectangle(ofstream &ofst, Figure& f) {
@@ -160,7 +163,7 @@ namespace {
             throw; // Exeption;
         }
     }
-/*
+
     // Регистратор функции ввода специализации фигуры-прямоугольника из потока как фигуры.
     class RegOutFigRectangle {
     public:
@@ -173,25 +176,30 @@ namespace {
     };
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     RegOutFigRectangle regOutFigRectangle("Registration of OutFigRectangle");
-*/
-REGISTER_METHOD(OutFigureFuncArray, OutFigRectangle, GetRegMarkFigRectangle(), 
-"Registration of OutFigRectangle");
 
+REGISTER_METHOD_WITH_CHECK(OutFigureFuncArray, Out, GetRegMarkFigRectangle(), "Registration of OutFigRectangle", FigRectangle, Figure, ofstream&);
+
+//REGISTER_METHOD(OutFigureFuncArray, OutFigRectangle, GetRegMarkFigRectangle(), 
+//"Registration of OutFigRectangle");
 }
+*/
 
+REGISTER_METHOD_WITH_CHECK(OutFigureFuncArray, Out, GetRegMarkFigRectangle(), "Registration of OutFigRectangle", FigRectangle, Figure, ofstream&);
+
+/*
 namespace {
     // Удаление специализации фигуры-прямоугольника как обобщенной фигуры
-    void DeleteFigRectangleSkin(Figure* pf) {
+    void DeleteFigRectangleSkin(Figure& f) {
         // Проверка на всякий случай
         if(pf->mark == GetRegMarkFigRectangle()) {
-            DeleteFigRectangle(static_cast<FigRectangle*>(pf));
+            DeleteFigRectangle(static_cast<FigRectangle&>(f));
         }
         else {
             cerr << "DeleteFigRectangleSkin: Incorrect convertion Figure to FigRectangle" << endl;
             throw; // Exeption;
         }
     }
-/*
+
     // Регистратор функции ввода специализации фигуры-прямоугольника из потока как фигуры.
     class RegDeleteFigRectangleSkin {
     public:
@@ -204,7 +212,13 @@ namespace {
     };
     // Объект, обеспечивающий регистрацию необходимых обработчиков специализаций
     RegDeleteFigRectangleSkin regDeleteFigRectangleSkin("Registration of DeleteFigRectangleSkin");
-*/
-REGISTER_METHOD(DeleteFigureFuncArray, DeleteFigRectangleSkin, GetRegMarkFigRectangle(), "Registration of DeleteFigRectangleSkin");
+
+REGISTER_METHOD_WITH_CHECK(DeleteFigureFuncArray, DeleteFigRectangle, GetRegMarkFigRectangle(), "Registration of DeleteFigRectangle", FigRectangle, Figure);
+
+//REGISTER_METHOD(DeleteFigureFuncArray, DeleteFigRectangleSkin, GetRegMarkFigRectangle(), "Registration of DeleteFigRectangleSkin");
 
 }
+*/
+
+REGISTER_METHOD_WITH_CHECK(DeleteFigureFuncArray, DeleteFigRectangle, GetRegMarkFigRectangle(), "Registration of DeleteFigRectangle", FigRectangle, Figure);
+

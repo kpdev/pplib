@@ -35,12 +35,12 @@ FigCircle* CreateFigCircleAndInit(int r);
 Figure* CreateFigCircleUseFileMark(int fileMark);
 
 // Ввод специализации фигуры-круга из потока
-void In(ifstream &ifst, FigCircle& fc);
+void In(FigCircle& fc, ifstream &ifst);
 
 // Вывод специализации фигуры-круга в поток
-void Out(ofstream &ofst, FigCircle& fc);
+void Out(FigCircle& fc, ofstream &ofst);
 
 // Удаление специализации фигуры-прямоугольника
-void DeleteFigCircle(FigCircle* pfc);
+void DeleteFigCircle(FigCircle& pfc);
 
 #endif

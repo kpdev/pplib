@@ -34,12 +34,12 @@ FigTriangle* CreateFigTriangleAndInit(int a, int b, int c);
 Figure* CreateFigTriangleUseFileMark(int fileMark);
 
 // Ввод специализации фигуры-треугольника из потока
-void In(ifstream &ifst, FigTriangle& ft);
+void In(FigTriangle& ft, ifstream &ifst);
 
 // Вывод специализации фигуры-треугольника в поток
-void Out(ofstream &ofst, FigTriangle& ft);
+void Out(FigTriangle& ft, ofstream &ofst);
 
 // Удаление специализации фигуры-треугольника
-void DeleteFigTriangle(FigTriangle* pft);
+void DeleteFigTriangle(FigTriangle& pft);
 
 #endif

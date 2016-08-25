@@ -64,7 +64,7 @@ Figure* CreateFigureUseFileMark(int fileMark) {
 // после определения маркера фигуры из файла и создания конкретной фигуры
 void InFigureValue(ifstream &ifst, Figure& f) {
     InFigureValueFunc func = InFigureValueFuncArray[f.mark];
-    func(ifst, f);
+    func(f, ifst);
 }
 
 // Ввод обобщенной фигуры из потока
@@ -80,13 +80,13 @@ Figure* InFigure(ifstream &ifst) {
 }
 
 // Вывод обобщенной фигуры в поток
-void OutFigure(ofstream &ofst, Figure& f) {
+void OutFigure(Figure& f, ofstream &ofst) {
     OutFigureFunc func = OutFigureFuncArray[f.mark];
-    func(ofst, f);
+    func(f, ofst);
 }
 
 // Удаление обобщенной фигуры
 void DeleteFigure(Figure* pf) {
     DeleteFigureFunc func = DeleteFigureFuncArray[pf->mark];
-    func(pf);
+    func(*pf);
 }

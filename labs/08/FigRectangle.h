@@ -34,12 +34,12 @@ FigRectangle* CreateFigRectangleAndInit(int x, int y);
 Figure* CreateFigRectangleUseFileMark(int fileMark);
 
 // Ввод специализации фигуры-прямоугольника из потока
-void In(ifstream &ifst, FigRectangle& fr);
+void In(FigRectangle& fr, ifstream &ifst);
 
 // Вывод специализации фигуры-прямоугольника в поток
-void Out(ofstream &ofst, FigRectangle& fr);
+void Out(FigRectangle& fr, ofstream &ofst);
 
 // Удаление специализации фигуры-прямоугольника
-void DeleteFigRectangle(FigRectangle* pft);
+void DeleteFigRectangle(FigRectangle& fr);
 
 #endif

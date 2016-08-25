@@ -39,7 +39,7 @@ void Out(ofstream &ofst, Container& c) {
     ofst << "Container is containing " << c.size << " elements." << endl;
     for(int i = 0; i < c.size; i++) {
       ofst << i << ": ";
-      OutFigure(ofst, *(c.storage[i]));
+      OutFigure(*(c.storage[i]), ofst);
     }
 }
 

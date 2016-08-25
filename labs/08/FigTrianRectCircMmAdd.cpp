@@ -18,45 +18,45 @@
 void TrianCircOut(FigTriangle& ft1, FigCircle& fc2, ofstream &ofst) {
     ofst << "Triangle & Circle Company" << endl;
     ofst << "     ";
-    Out(ofst, ft1);
+    Out(ft1, ofst);
     ofst << "     ";
-    Out(ofst, fc2);
+    Out(fc2, ofst);
 }
 
 //  Обработчик специализации, вычисляющий отношения между прямоугольником и кругом
 void RectCircOut(FigRectangle& fr1, FigCircle& fc2, ofstream &ofst) {
     ofst << "We have Rectangle & Circle after its" << endl;
     ofst << "     ";
-    Out(ofst, fr1);
+    Out(fr1, ofst);
     ofst << "     ";
-    Out(ofst, fc2);
+    Out(fc2, ofst);
 }
 
 //  Обработчик специализации, вычисляющий отношения между кругом и треугольником
 void CircTrianOut(FigCircle& fc1, FigTriangle& ft2, ofstream &ofst) {
     ofst << "This Circle is before Triangle" << endl;
     ofst << "     ";
-    Out(ofst, fc1);
+    Out(fc1, ofst);
     ofst << "     ";
-    Out(ofst, ft2);
+    Out(ft2, ofst);
 }
 
 //  Обработчик специализации, вычисляющий отношения между кругом и прямоугольником
 void CircRectOut(FigCircle& fc1, FigRectangle& fr2, ofstream &ofst) {
     ofst << "Circle + Rectanle = 4 Angles" << endl;
     ofst << "     ";
-    Out(ofst, fc1);
+    Out(fc1, ofst);
     ofst << "     ";
-    Out(ofst, fr2);
+    Out(fr2, ofst);
 }
 
 //  Обработчик специализации, вычисляющий отношения между двумя кругами
 void CircCircOut(FigCircle& fc1, FigCircle& fc2, ofstream &ofst) {
     ofst << "2 * Circle = 8" << endl;
     ofst << "     ";
-    Out(ofst, fc1);
+    Out(fc1, ofst);
     ofst << "     ";
-    Out(ofst, fc2);
+    Out(fc2, ofst);
 }
 
 //------------------------------------------------------------------------------
