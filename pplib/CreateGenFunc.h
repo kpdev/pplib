@@ -10,7 +10,7 @@ RetType TypeName( __VA_ARGS__ );
 
 
 #define DEFINE_GEN_FUNC(TypeName, Number) \
-TypeName TypeName##Array[Number];
+TypeName##Func TypeName##FuncArray[Number];
 
 
 #endif // CREATE_GEN_FUNC_HEADER_GUARD

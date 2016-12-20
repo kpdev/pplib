@@ -41,10 +41,10 @@ DeleteFigureFunc deleteFigure[10];
 DEFINE_GENERALIZATION_METHOD(Figure);
 
 static const unsigned specializationMax = 10;
-DEFINE_GEN_FUNC(CreateFigureUseFileMarkFunc, 	specializationMax);
-DEFINE_GEN_FUNC(InFigureValueFunc, 			specializationMax);
-DEFINE_GEN_FUNC(OutFigureFunc, 				specializationMax);
-DEFINE_GEN_FUNC(DeleteFigureFunc, 			specializationMax);
+DEFINE_GEN_FUNC(CreateFigureUseFileMark, 	specializationMax);
+DEFINE_GEN_FUNC(InFigureValue, 			specializationMax);
+DEFINE_GEN_FUNC(OutFigure, 				specializationMax);
+DEFINE_GEN_FUNC(DeleteFigure, 			specializationMax);
 
 //------------------------------------------------------------------------------
 //  Функции используемые для обработки обобщенной фигуры

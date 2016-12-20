@@ -6,16 +6,6 @@
 
 #include "../../pplib/CreateSpecialization.h"
 
-/*
-//------------------------------------------------------------------------------
-// Структура FigCircle, определяющая содержимое круга как специализации фигуры
-struct FigCircle: Figure {
-    Circle c;
-};
-
-// Функция возвращающая значение признака для зарегистрированной фигуры
-int GetRegMarkFigCircle();
-*/
 
 CREATE_SPECIALIZATION(FigCircle, Figure, Circle);
 
@@ -24,15 +14,6 @@ CREATE_SPECIALIZATION(FigCircle, Figure, Circle);
 
 // Инициализация существующей фигуры-круга
 void Init(FigCircle& fc, int r);
-
-// Создание фигуры-круга без инициализации сторон
-FigCircle* CreateFigCircle();
-
-// Создание фигуры-круга с инициализаций сторон
-FigCircle* CreateFigCircleAndInit(int r);
-
-// Создание фигуры-круга как обобщенной фигуры по совпадению маркера из файла
-Figure* CreateFigCircleUseFileMark(int fileMark);
 
 // Ввод специализации фигуры-круга из потока
 void In(FigCircle& fc, ifstream &ifst);

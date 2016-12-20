@@ -6,16 +6,7 @@
 
 #include "../../pplib/CreateSpecialization.h"
 
-/*
-//------------------------------------------------------------------------------
-// Структура FigRectangle, определяющая содержимое прямоугольника как специализации фигуры
-struct FigRectangle: Figure {
-    Rectangle r;
-};
 
-// Функция возвращающая значение признака для зарегистрированной фигуры
-int GetRegMarkFigRectangle();
-*/
 CREATE_SPECIALIZATION(FigRectangle, Figure, Rectangle);
 
 //------------------------------------------------------------------------------
@@ -23,15 +14,6 @@ CREATE_SPECIALIZATION(FigRectangle, Figure, Rectangle);
 
 // Инициализация существующей фигуры-прямоугольника
 void Init(FigRectangle& fr, int x, int y);
-
-// Создание фигуры-прямоугольника без инициализации сторон
-FigRectangle* CreateFigRectangle();
-
-// Создание фигуры-прямоугольника с инициализаций сторон
-FigRectangle* CreateFigRectangleAndInit(int x, int y);
-
-// Создание фигуры-прямоугольника как обобщенной фигуры по совпадению маркера из файла
-Figure* CreateFigRectangleUseFileMark(int fileMark);
 
 // Ввод специализации фигуры-прямоугольника из потока
 void In(FigRectangle& fr, ifstream &ifst);
