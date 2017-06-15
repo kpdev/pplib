@@ -10,10 +10,10 @@
 
 CREATE_SPECIALIZATION(FigCircle, Figure, Circle);
 
-FUNC_TES(Init, void, FigCircle);
+FUNC_TEST_NO_PARAMS(Init, void, FigCircle);
 FUNC_TES(In, void, FigCircle, ifstream&);
 FUNC_TES(Out, void, FigCircle, ofstream&);
-FUNC_TES(DeleteFigCircle, void, FigCircle);
+FUNC_TEST_NO_PARAMS(DeleteFigCircle, void, FigCircle);
 
 //------------------------------------------------------------------------------
 //  Функции используемые для обработки круга как специализации фигуры
