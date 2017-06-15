@@ -6,14 +6,30 @@
 #include "../../pplib/CreateRegMarkMethod.h"
 #include "../../pplib/RegisterSpecialization.h"
 #include "../../pplib/RegisterMethod.h"
+#include "../../pplib/CreateBaseMethods.h"
+#include "../../pplib/CreateBaseMethodsProt.h"
+
 
 
 CREATE_REG_MARK_METHOD(FigCircle);
 REGISTER_SPECIALIZATION(Figure, FigCircle, "Registration of: FigCircle");
 
+INIT_v2(FigCircle);
+//INIT(FigCircle, r);
+CREATE(FigCircle);
+//CREATEANDINIT_v2(FigCircle, Circle);
+//CREATEANDINIT(FigCircle, Circle, r);
+
+
+
+IN(FigCircle, Circle);
+OUT(FigCircle, Circle);
+
+DELETE(FigCircle);
+
 //------------------------------------------------------------------------------
 //  Функции используемые для обработки круга как специализации фигуры
-
+/*
 // Инициализация существующей фигуры-круга
 void Init(FigCircle& fc, int r) {
     fc.mark = GetRegMarkFigCircle();
@@ -50,7 +66,7 @@ void Out(FigCircle& fc, ofstream &ofst) {
 void DeleteFigCircle(FigCircle& pfc) {
     delete &pfc;
 }
-
+*/
 
 //=============================================================================
 // Функции - оболочки, используемые для параметризации данной специализации,
